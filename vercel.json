@@ -36,6 +36,18 @@
       "dest": "/public/icon-180x180.png"
     },
     {
+      "src": "/icon-256x256.png",
+      "dest": "/public/icon-256x256.png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "dest": "/public/icon-512x512.png"
+    },
+    {
+      "src": "/icon-1024x1024.png",
+      "dest": "/public/icon-1024x1024.png"
+    },
+    {
       "src": "/icon-maskable.png",
       "dest": "/public/icon-maskable.png"
     },
