@@ -3,7 +3,7 @@
   "name": "ruqiyah-kinderen",
   "builds": [
     {
-      "src": "index.html",
+      "src": "public/**",
       "use": "@vercel/static",
       "config": {
         "distDir": ""
@@ -13,23 +13,23 @@
   "routes": [
     {
       "src": "/favicon.ico",
-      "dest": "/favicon.ico"
+      "dest": "/public/favicon.ico"
     },
     {
       "src": "/icon.png",
-      "dest": "/icon.png"
+      "dest": "/public/icon.png"
     },
     {
       "src": "/test-icons.html",
-      "dest": "/test-icons.html"
+      "dest": "/public/test-icons.html"
     },
     {
       "src": "/manifest.json",
-      "dest": "/manifest.json"
+      "dest": "/public/manifest.json"
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html",
+      "dest": "/public/index.html",
       "status": 200
     }
   ],
