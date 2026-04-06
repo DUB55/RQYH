@@ -17,8 +17,8 @@
       "status": 200
     },
     {
-      "src": "/icon.png",
-      "dest": "/icon.png"
+      "src": "/icon-transparent.png",
+      "dest": "/icon-transparent.png"
     },
     {
       "src": "/manifest.json",
