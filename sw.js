@@ -4,15 +4,9 @@ const urlsToCache = [
   '/index.html',
   '/manifest.json',
   '/favicon.ico',
+  '/favicon-16x16.png',
+  '/favicon-32x32.png',
   '/icon.png',
-  '/icon-120x120.png',
-  '/icon-152x152.png',
-  '/icon-167x167.png',
-  '/icon-180x180.png',
-  '/icon-256x256.png',
-  '/icon-512x512.png',
-  '/icon-1024x1024.png',
-  '/icon-maskable.png',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
   'https://www.duaandazkar.com/audio_new/CH6DUA1.mp3'
 ];

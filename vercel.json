@@ -16,40 +16,16 @@
       "dest": "/public/favicon.ico"
     },
     {
+      "src": "/favicon-16x16.png",
+      "dest": "/public/favicon-16x16.png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "dest": "/public/favicon-32x32.png"
+    },
+    {
       "src": "/icon.png",
       "dest": "/public/icon.png"
-    },
-    {
-      "src": "/icon-120x120.png",
-      "dest": "/public/icon-120x120.png"
-    },
-    {
-      "src": "/icon-152x152.png",
-      "dest": "/public/icon-152x152.png"
-    },
-    {
-      "src": "/icon-167x167.png",
-      "dest": "/public/icon-167x167.png"
-    },
-    {
-      "src": "/icon-180x180.png",
-      "dest": "/public/icon-180x180.png"
-    },
-    {
-      "src": "/icon-256x256.png",
-      "dest": "/public/icon-256x256.png"
-    },
-    {
-      "src": "/icon-512x512.png",
-      "dest": "/public/icon-512x512.png"
-    },
-    {
-      "src": "/icon-1024x1024.png",
-      "dest": "/public/icon-1024x1024.png"
-    },
-    {
-      "src": "/icon-maskable.png",
-      "dest": "/public/icon-maskable.png"
     },
     {
       "src": "/test-icons.html",
