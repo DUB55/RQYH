@@ -4,6 +4,14 @@ const urlsToCache = [
   '/index.html',
   '/manifest.json',
   '/logo.png',
+  '/logo-72.png',
+  '/logo-96.png',
+  '/logo-128.png',
+  '/logo-144.png',
+  '/logo-152.png',
+  '/logo-192.png',
+  '/logo-384.png',
+  '/logo-512.png',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
   'https://www.duaandazkar.com/audio_new/CH6DUA1.mp3'
 ];

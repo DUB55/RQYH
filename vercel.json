@@ -21,6 +21,38 @@
       "dest": "/logo.png"
     },
     {
+      "src": "/logo-72.png",
+      "dest": "/logo-72.png"
+    },
+    {
+      "src": "/logo-96.png",
+      "dest": "/logo-96.png"
+    },
+    {
+      "src": "/logo-128.png",
+      "dest": "/logo-128.png"
+    },
+    {
+      "src": "/logo-144.png",
+      "dest": "/logo-144.png"
+    },
+    {
+      "src": "/logo-152.png",
+      "dest": "/logo-152.png"
+    },
+    {
+      "src": "/logo-192.png",
+      "dest": "/logo-192.png"
+    },
+    {
+      "src": "/logo-384.png",
+      "dest": "/logo-384.png"
+    },
+    {
+      "src": "/logo-512.png",
+      "dest": "/logo-512.png"
+    },
+    {
       "src": "/manifest.json",
       "dest": "/manifest.json"
     }
