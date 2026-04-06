@@ -1,0 +1,24 @@
+{
+  "short_name": "Ruqiyah Kids",
+  "name": "Ruqiyah voor Kinderen - Islamitische Smeekbeden",
+  "description": "Lees en beluister ruqiyah smeekbeden voor kinderen met Arabische tekst, Nederlandse vertaling en uitspraak",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#1a5f3a",
+  "background_color": "#f5f5f5",
+  "orientation": "portrait",
+  "lang": "nl",
+  "dir": "ltr"
+}

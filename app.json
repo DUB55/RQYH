@@ -1,0 +1,37 @@
+{
+  "expo": {
+    "name": "Ruqiyah voor Kinderen",
+    "slug": "ruquiyah-kinderen",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./public/icon-512.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./public/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1a5f3a"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ruqiyah.kinderen"
+    },
+    "web": {
+      "favicon": "./public/favicon.png",
+      "output": "static",
+      "bundler": "metro"
+    },
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "@expo-google-fonts/noto-naskh-arabic/NotoNaskhArabic_400Regular.ttf"
+          ]
+        }
+      ]
+    ]
+  }
+}
