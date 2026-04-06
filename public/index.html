@@ -223,6 +223,42 @@
             font-size: 18px;
         }
 
+        .repeat-button {
+            background: #ffffff;
+            border: 2px solid #333333;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .repeat-button:hover {
+            background: #f8f8f8;
+            transform: scale(0.95);
+        }
+
+        .repeat-button:active {
+            transform: scale(0.9);
+        }
+
+        .repeat-button.active {
+            background: #333333;
+        }
+
+        .repeat-button.active i {
+            color: #ffffff;
+        }
+
+        .repeat-button i {
+            color: #333333;
+            font-size: 16px;
+        }
+
         .progress-container {
             flex: 1;
             display: flex;
@@ -297,6 +333,9 @@
             <div class="play-button" onclick="togglePlayAll()">
                 <i class="fas fa-play" id="play-icon"></i>
             </div>
+            <div class="repeat-button" onclick="toggleRepeat()" id="repeat-button">
+                <i class="fas fa-redo" id="repeat-icon"></i>
+            </div>
             <div class="progress-container">
                 <div class="current-title" id="current-title">Klik om af te spelen</div>
                 <div class="progress-bar" onclick="seekAudio(event)">
@@ -365,6 +404,7 @@
         let currentAudio = null;
         let currentIndex = 0;
         let isPlaying = false;
+        let isRepeating = false;
 
         function createCard(data) {
             const dutchMeaningArray = Array.isArray(data.dutchMeaning) ? data.dutchMeaning : [data.dutchMeaning];
@@ -444,6 +484,21 @@
             }
         }
 
+        function toggleRepeat() {
+            const repeatButton = document.getElementById('repeat-button');
+            const repeatIcon = document.getElementById('repeat-icon');
+            
+            isRepeating = !isRepeating;
+            
+            if (isRepeating) {
+                repeatButton.classList.add('active');
+                repeatIcon.className = 'fas fa-redo-alt';
+            } else {
+                repeatButton.classList.remove('active');
+                repeatIcon.className = 'fas fa-redo';
+            }
+        }
+
         function playSupplication(index) {
             const data = supplications[index];
             currentAudio = new Audio(data.audioUrl);
@@ -461,10 +516,16 @@
             
             currentAudio.ontimeupdate = updateProgress;
             currentAudio.onended = () => {
-                if (currentIndex < supplications.length - 1) {
+                if (isRepeating) {
+                    // If repeating is on, restart from the beginning
+                    currentIndex = 0;
+                    playSupplication(currentIndex);
+                } else if (currentIndex < supplications.length - 1) {
+                    // If not repeating, play next smeekbede
                     currentIndex++;
                     playSupplication(currentIndex);
                 } else {
+                    // End of playlist
                     document.getElementById('play-icon').className = 'fas fa-play';
                     isPlaying = false;
                     document.getElementById('current-title').textContent = 'Afgespeeld';
