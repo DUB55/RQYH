@@ -274,19 +274,13 @@
 </head>
 <body>
     <div class="header">
-        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
-            <img src="/icon.png" alt="Ruqiyah Logo" style="height: 40px; width: auto; filter: none;" onerror="this.style.display='none'">
-            <div>
-                <h1 style="margin-bottom: 0;">Ruqiyah voor Kinderen</h1>
-                <p>Deel 1</p>
-            </div>
-        </div>
+        <h1>Ruqiyah voor Kinderen</h1>
     </div>
 
     <div class="container">
         <div class="intro">
-            <h2><i class="fas fa-book-open"></i> Islamitische Smeekbeden voor Bescherming</h2>
-            <p>Lees en beluister deze ruqiyah voor kinderen</p>
+            <h2>Ruqiyah voor Kinderen</h2>
+            <p>Islamitische smeekbeden en uitspraak voor kinderen</p>
         </div>
 
         <div id="app">
@@ -380,15 +374,10 @@
             
             return `
                 <div class="card">
-                    <div class="source"><i class="fas fa-book"></i> ${data.source}</div>
+                    <div class="source">${data.source}</div>
                     ${arabicTextArray.map(line => `<div class="arabic">${line}</div>`).join('')}
                     <div class="translation">
-                        <h3><i class="fas fa-language"></i> Nederlandse Vertaling:</h3>
                         ${dutchMeaningArray.map(meaning => `<p>${meaning}</p>`).join('')}
-                    </div>
-                    <div class="phonetic">
-                        <h3><i class="fas fa-volume-up"></i> Uitspraak (Fonetisch):</h3>
-                        <p>${data.dutchPhonetic}</p>
                     </div>
                 </div>
             `;
@@ -442,7 +431,7 @@
             currentAudio = new Audio(data.audioUrl);
             currentAudio.id = index;
             
-            document.getElementById('current-title').textContent = `Smeekbede ${index + 1}: ${data.source}`;
+            document.getElementById('current-title').textContent = `Smeekbede ${index + 1}`;
             document.getElementById('play-icon').className = 'fas fa-pause';
             
             currentAudio.play().then(() => {
