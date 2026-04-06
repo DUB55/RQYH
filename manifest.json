@@ -2,6 +2,20 @@
   "name": "Ruqiyah voor Kinderen",
   "short_name": "Ruqiyah",
   "description": "Islamitische smeekbeden voor kinderen",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#ffffff",

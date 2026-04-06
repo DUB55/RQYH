@@ -15,6 +15,14 @@
       "src": "/(.*)",
       "dest": "/index.html",
       "status": 200
+    },
+    {
+      "src": "/icon.png",
+      "dest": "/icon.png"
+    },
+    {
+      "src": "/manifest.json",
+      "dest": "/manifest.json"
     }
   ],
   "headers": [
