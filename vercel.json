@@ -17,10 +17,6 @@
       "status": 200
     },
     {
-      "src": "/icon-transparent.png",
-      "dest": "/icon-transparent.png"
-    },
-    {
       "src": "/manifest.json",
       "dest": "/manifest.json"
     }
