@@ -20,6 +20,26 @@
       "dest": "/public/icon.png"
     },
     {
+      "src": "/icon-120x120.png",
+      "dest": "/public/icon-120x120.png"
+    },
+    {
+      "src": "/icon-152x152.png",
+      "dest": "/public/icon-152x152.png"
+    },
+    {
+      "src": "/icon-167x167.png",
+      "dest": "/public/icon-167x167.png"
+    },
+    {
+      "src": "/icon-180x180.png",
+      "dest": "/public/icon-180x180.png"
+    },
+    {
+      "src": "/icon-maskable.png",
+      "dest": "/public/icon-maskable.png"
+    },
+    {
       "src": "/test-icons.html",
       "dest": "/public/test-icons.html"
     },
