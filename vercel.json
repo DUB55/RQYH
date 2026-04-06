@@ -21,20 +21,8 @@
       "dest": "/favicon.ico"
     },
     {
-      "src": "/favicon-16x16.png",
-      "dest": "/favicon-16x16.png"
-    },
-    {
-      "src": "/favicon-32x32.png",
-      "dest": "/favicon-32x32.png"
-    },
-    {
-      "src": "/icon-192x192.png",
-      "dest": "/icon-192x192.png"
-    },
-    {
-      "src": "/icon-512x512.png",
-      "dest": "/icon-512x512.png"
+      "src": "/icon.png",
+      "dest": "/icon.png"
     },
     {
       "src": "/manifest.json",
