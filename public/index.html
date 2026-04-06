@@ -278,11 +278,6 @@
     </div>
 
     <div class="container">
-        <div class="intro">
-            <h2>Ruqiyah voor Kinderen</h2>
-            <p>Islamitische smeekbeden en uitspraak voor kinderen</p>
-        </div>
-
         <div id="app">
             <div class="loading">Laden...</div>
         </div>
@@ -335,7 +330,7 @@
                 source: 'Abu Dawood 4/323',
                 arabicText: 'بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ، وَهُوَ السَّمِيعُ الْعَلِيمُ',
                 dutchMeaning: 'In de Naam van Allah, met Wiens Naam niets schade kan toebrengen op aarde of in de hemel, en Hij is de Alhorende, de Alwetende.',
-                dutchPhonetic: 'bismie allaahie alladhee laa yadhoerru ma\'a ismihie shai\'un fi al-ardhie wa laa fi as-samaa ie wa huwa as-samieoe al-alim',
+                dutchPhonetic: 'bismie allaahie alladhee laa yadhoerru ma\'a ismihie shai\'un fi al-ardhie wa laa fi as-samaa ie wa huwa as-samieoe al-\'aleem',
                 audioUrl: 'https://www.duaandazkar.com/audio_new/CH6DUA1.mp3'
             },
             {
@@ -351,7 +346,7 @@
                 source: 'Abu Dawood 3/437',
                 arabicText: ['بِسْمِ اللَّهِ', 'بِسْمِ اللَّهِ', 'بِسْمِ اللَّهِ'],
                 dutchMeaning: ['In de Naam van Allah', 'In de Naam van Allah', 'In de Naam van Allah'],
-                dutchPhonetic: 'bismie allaahie bismie allaahie bismie allaahie',
+                dutchPhonetic: 'bismillah bismillah bismillah',
                 audioUrl: 'https://www.duaandazkar.com/audio_new/CH6DUA1.mp3'
             },
             {
@@ -359,7 +354,7 @@
                 source: 'Muslim 1/209',
                 arabicText: 'بِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ',
                 dutchMeaning: 'In de Naam van Allah begin ik; ik vertrouw op Allah; en er is geen kracht en geen macht dan met Allah.',
-                dutchPhonetic: 'bismie allaahie tawakkaltu \'alaa allaahie wa laa hawla wa laa quwwata illaa billaahie',
+                dutchPhonetic: 'bismie allaahie tawakkaltu \'alaa allaahie wa laa hawla wa laa quwwata illaa billaah',
                 audioUrl: 'https://www.duaandazkar.com/audio_new/CH6DUA1.mp3'
             }
         ];
@@ -395,6 +390,26 @@
                 document.getElementById('progress-fill').style.width = progress + '%';
                 document.getElementById('current-time').textContent = formatTime(currentAudio.currentTime);
                 document.getElementById('total-time').textContent = formatTime(currentAudio.duration || 0);
+                
+                // Update current title based on time
+                const currentTime = currentAudio.currentTime;
+                let currentSmeekbede = 1;
+                
+                if (currentTime >= 0 && currentTime < 15) {
+                    currentSmeekbede = 1;
+                } else if (currentTime >= 15 && currentTime < 23) {
+                    currentSmeekbede = 2;
+                } else if (currentTime >= 23 && currentTime < 36) {
+                    currentSmeekbede = 3;
+                } else if (currentTime >= 36 && currentTime < 47) {
+                    currentSmeekbede = 4;
+                } else if (currentTime >= 47 && currentTime < 51) {
+                    currentSmeekbede = 5;
+                } else if (currentTime >= 51) {
+                    currentSmeekbede = 6;
+                }
+                
+                document.getElementById('current-title').textContent = `Smeekbede ${currentSmeekbede}`;
             }
         }
 
