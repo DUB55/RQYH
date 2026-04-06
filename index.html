@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruqiyah voor Kinderen</title>
+    <link rel="manifest" href="public/manifest.json">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #ffffff;
+            color: #333333;
+            line-height: 1.6;
+            padding-bottom: 100px;
+        }
+
+        .header {
+            background-color: #ffffff;
+            color: #333333;
+            padding: 20px;
+            text-align: center;
+            padding-top: 60px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: #666666;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+        }
+
+        .intro h2 {
+            font-size: 20px;
+            color: #333333;
+            margin-bottom: 5px;
+        }
+
+        .intro p {
+            font-size: 16px;
+            color: #666666;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #e8e8e8;
+        }
+
+        .source {
+            background: #f8f8f8;
+            padding: 8px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #555555;
+            font-weight: 500;
+        }
+
+        .arabic {
+            font-size: 28px;
+            text-align: right;
+            direction: rtl;
+            line-height: 1.8;
+            margin: 20px 0;
+            color: #1a1a1a;
+            font-family: 'Noto Naskh Arabic', 'Arial Unicode MS', serif;
+        }
+
+        .translation {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .translation h3 {
+            color: #333333;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .translation p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .phonetic {
+            background: #f8f8f8;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .phonetic h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #555555;
+        }
+
+        .phonetic p {
+            font-size: 15px;
+            font-style: italic;
+            color: #666666;
+            line-height: 1.4;
+        }
+
+        .footer {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+        }
+
+        .attribution {
+            font-size: 14px;
+            color: #999999;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #333333;
+        }
+
+        /* Bottom Audio Bar */
+        .audio-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-top: 1px solid #e0e0e0;
+            padding: 15px 20px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            gap: 15px;
+        }
+
+        .play-button {
+            background: #ffffff;
+            border: 2px solid #333333;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .play-button:hover {
+            background: #f8f8f8;
+            transform: scale(0.95);
+        }
+
+        .play-button:active {
+            transform: scale(0.9);
+        }
+
+        .play-button i {
+            color: #333333;
+            font-size: 18px;
+        }
+
+        .progress-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #333333;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #666666;
+        }
+
+        .current-title {
+            font-size: 14px;
+            color: #333333;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                margin: 10px 5px;
+                padding: 15px;
+            }
+            
+            .arabic {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Ruqiyah voor Kinderen</h1>
+        <p>Deel 1</p>
+    </div>
+
+    <div class="container">
+        <div class="intro">
+            <h2><i class="fas fa-book-open"></i> Islamitische Smeekbeden voor Bescherming</h2>
+            <p>Lees en beluister deze ruqiyah voor kinderen</p>
+        </div>
+
+        <div id="app">
+            <div class="loading">Laden...</div>
+        </div>
+
+        <div class="footer">
+            <p class="attribution">Audio bron: duaandazkar.com</p>
+            <p class="attribution">https://www.duaandazkar.com/</p>
+        </div>
+    </div>
+
+    <!-- Bottom Audio Bar -->
+    <div class="audio-bar">
+        <div class="audio-controls">
+            <div class="play-button" onclick="togglePlayAll()">
+                <i class="fas fa-play" id="play-icon"></i>
+            </div>
+            <div class="progress-container">
+                <div class="current-title" id="current-title">Klik om af te spelen</div>
+                <div class="progress-bar" onclick="seekAudio(event)">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="time-display">
+                    <span id="current-time">0:00</span>
+                    <span id="total-time">0:00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const supplications = [
+            {
+                id: 1,
+                source: 'Bukhari 4/119',
+                arabicText: 'أَعُوذُكُمَا بِكَلِمَاتِ اللَّهِ التَّامَّةِ، مِنْ كُلِّ شَيْطَانٍ وَهَامَّةٍ، وَمِنْ كُلِّ عَيْنٍ لَامَّةٍ',
+                dutchMeaning: 'Ik zoek bescherming voor jullie beiden in de Volmaakte Woorden van Allah, tegen elke duivel, elk giftig wezen en elk kwaadaardig oog.',
+                dutchPhonetic: 'a\'oedhu-kumaa biekalimaat allaahie at-taammah min kul-lie shai-thaanin wa haammah wa min kul-lie dhurriyyaatinaa qurrata a\'yun',
+                audioUrl: 'https://www.duaandazkar.com/audio_new/CH6DUA1.mp3'
+            },
+            {
+                id: 2,
+                source: 'Ahmed 2/290',
+                arabicText: 'أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ',
+                dutchMeaning: 'Ik zoek mijn toevlucht in de Volmaakte Woorden van Allah, tegen het kwaad van wat Hij heeft geschapen.',
+                dutchPhonetic: 'a\'oedhu biekalimaat allaahie at-taammaat min sharri maa khalaq',
+                audioUrl: 'https://www.duaandazkar.com/audio_new/CH6DUA1.mp3'
+            },
+            {
+                id: 3,
+                source: 'Abu Dawood 4/323',
+                arabicText: 'بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ، وَهُوَ السَّمِيعُ الْعَلِيمُ',
+                dutchMeaning: 'In de Naam van Allah, met Wiens Naam niets schade kan toebrengen op aarde of in de hemel, en Hij is de Alhorende, de Alwetende.',
+                dutchPhonetic: 'bismie allaahie alladhee laa yadhoerru ma\'a ismihie shai\'un fi al-ardhie wa laa fi as-samaa ie wa huwa as-samieoe al-alim',
+                audioUrl: 'https://www.duaandazkar.com/audio_new/CH6DUA1.mp3'
+            },
+            {
+                id: 4,
+                source: 'Al Furkan: 74',
+                arabicText: 'رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا',
+                dutchMeaning: 'Onze Heer, schenk ons uit onze echtgenoten en nageslacht troost voor onze ogen, en maak ons tot een voorbeeld voor de godvruchtigen.',
+                dutchPhonetic: 'rabbanaa hab lanaa min azwaajinaa wa dhurriyyaatinaa qurrata a\'yun wa dj\'alnaa lilmuttaqieena imaamaa',
+                audioUrl: 'https://www.duaandazkar.com/audio_new/CH6DUA1.mp3'
+            },
+            {
+                id: 5,
+                source: 'Abu Dawood 3/437',
+                arabicText: ['بِسْمِ اللَّهِ', 'بِسْمِ اللَّهِ', 'بِسْمِ اللَّهِ'],
+                dutchMeaning: ['In de Naam van Allah', 'In de Naam van Allah', 'In de Naam van Allah'],
+                dutchPhonetic: 'bismie allaahie bismie allaahie bismie allaahie',
+                audioUrl: 'https://www.duaandazkar.com/audio_new/CH6DUA1.mp3'
+            },
+            {
+                id: 6,
+                source: 'Muslim 1/209',
+                arabicText: 'بِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ',
+                dutchMeaning: 'In de Naam van Allah begin ik; ik vertrouw op Allah; en er is geen kracht en geen macht dan met Allah.',
+                dutchPhonetic: 'bismie allaahie tawakkaltu \'alaa allaahie wa laa hawla wa laa quwwata illaa billaahie',
+                audioUrl: 'https://www.duaandazkar.com/audio_new/CH6DUA1.mp3'
+            }
+        ];
+
+        let currentAudio = null;
+        let currentIndex = 0;
+        let isPlaying = false;
+
+        function createCard(data) {
+            const dutchMeaningArray = Array.isArray(data.dutchMeaning) ? data.dutchMeaning : [data.dutchMeaning];
+            const arabicTextArray = Array.isArray(data.arabicText) ? data.arabicText : [data.arabicText];
+            
+            return `
+                <div class="card">
+                    <div class="source"><i class="fas fa-book"></i> ${data.source}</div>
+                    ${arabicTextArray.map(line => `<div class="arabic">${line}</div>`).join('')}
+                    <div class="translation">
+                        <h3><i class="fas fa-language"></i> Nederlandse Vertaling:</h3>
+                        ${dutchMeaningArray.map(meaning => `<p>${meaning}</p>`).join('')}
+                    </div>
+                    <div class="phonetic">
+                        <h3><i class="fas fa-volume-up"></i> Uitspraak (Fonetisch):</h3>
+                        <p>${data.dutchPhonetic}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function updateProgress() {
+            if (currentAudio && !currentAudio.paused) {
+                const progress = (currentAudio.currentTime / currentAudio.duration) * 100;
+                document.getElementById('progress-fill').style.width = progress + '%';
+                document.getElementById('current-time').textContent = formatTime(currentAudio.currentTime);
+                document.getElementById('total-time').textContent = formatTime(currentAudio.duration || 0);
+            }
+        }
+
+        function seekAudio(event) {
+            if (currentAudio && currentAudio.duration) {
+                const rect = event.currentTarget.getBoundingClientRect();
+                const x = event.clientX - rect.left;
+                const percentage = x / rect.width;
+                currentAudio.currentTime = percentage * currentAudio.duration;
+            }
+        }
+
+        function togglePlayAll() {
+            const playIcon = document.getElementById('play-icon');
+            
+            if (isPlaying && currentAudio && !currentAudio.paused) {
+                currentAudio.pause();
+                playIcon.className = 'fas fa-play';
+                isPlaying = false;
+            } else {
+                if (!currentAudio || currentAudio.ended) {
+                    currentIndex = 0;
+                    playSupplication(currentIndex);
+                } else {
+                    currentAudio.play();
+                }
+                playIcon.className = 'fas fa-pause';
+                isPlaying = true;
+            }
+        }
+
+        function playSupplication(index) {
+            const data = supplications[index];
+            currentAudio = new Audio(data.audioUrl);
+            currentAudio.id = index;
+            
+            document.getElementById('current-title').textContent = `Smeekbede ${index + 1}: ${data.source}`;
+            document.getElementById('play-icon').className = 'fas fa-pause';
+            
+            currentAudio.play().then(() => {
+                isPlaying = true;
+            }).catch(error => {
+                console.error('Audio playback failed:', error);
+                alert('Audio kan niet worden afgespeeld. Controleer uw internetverbinding.');
+            });
+            
+            currentAudio.ontimeupdate = updateProgress;
+            currentAudio.onended = () => {
+                if (currentIndex < supplications.length - 1) {
+                    currentIndex++;
+                    playSupplication(currentIndex);
+                } else {
+                    document.getElementById('play-icon').className = 'fas fa-play';
+                    isPlaying = false;
+                    document.getElementById('current-title').textContent = 'Afgespeeld';
+                }
+            };
+        }
+
+        function initApp() {
+            const appContainer = document.getElementById('app');
+            appContainer.innerHTML = supplications.map(data => createCard(data)).join('');
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
