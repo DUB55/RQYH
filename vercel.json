@@ -12,11 +12,6 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "/index.html",
-      "status": 200
-    },
-    {
       "src": "/favicon.ico",
       "dest": "/favicon.ico"
     },
@@ -25,8 +20,17 @@
       "dest": "/icon.png"
     },
     {
+      "src": "/test-icons.html",
+      "dest": "/test-icons.html"
+    },
+    {
       "src": "/manifest.json",
       "dest": "/manifest.json"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html",
+      "status": 200
     }
   ],
   "headers": [
