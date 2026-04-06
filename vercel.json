@@ -17,6 +17,10 @@
       "status": 200
     },
     {
+      "src": "/Designer (19)_transparent.png",
+      "dest": "/Designer (19)_transparent.png"
+    },
+    {
       "src": "/manifest.json",
       "dest": "/manifest.json"
     }
