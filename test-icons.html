@@ -39,6 +39,17 @@
             font-weight: bold;
             min-width: 150px;
         }
+        .log {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .error { color: #dc3545; }
+        .success { color: #28a745; }
     </style>
 </head>
 <body>
@@ -86,22 +97,83 @@
         <h2>🔍 Debug Info</h2>
         <p>Current URL: <span id="current-url"></span></p>
         <p>Browser: <span id="browser-info"></span></p>
+        
+        <h2>📋 Console Logs</h2>
+        <div id="logs"></div>
     </div>
     
     <script>
+        // Log function
+        function addLog(message, type = 'info') {
+            const logs = document.getElementById('logs');
+            const logEntry = document.createElement('div');
+            logEntry.className = `log ${type}`;
+            logEntry.innerHTML = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logs.appendChild(logEntry);
+            console.log(message);
+        }
+        
+        // Basic info
         document.getElementById('current-url').textContent = window.location.href;
         document.getElementById('browser-info').textContent = navigator.userAgent;
+        addLog('Page loaded successfully');
         
         // Test icon loading
-        document.querySelectorAll('img').forEach(img => {
-            img.onerror = function() {
-                this.style.border = '2px solid red';
-                this.alt = 'FAILED TO LOAD';
-            };
+        const testIcons = [
+            { name: 'favicon.ico', url: '/favicon.ico' },
+            { name: 'favicon-16x16.png', url: '/favicon-16x16.png' },
+            { name: 'favicon-32x32.png', url: '/favicon-32x32.png' },
+            { name: 'icon-192x192.png', url: '/icon-192x192.png' },
+            { name: 'icon-512x512.png', url: '/icon-512x512.png' }
+        ];
+        
+        testIcons.forEach(icon => {
+            const img = new Image();
             img.onload = function() {
-                this.style.border = '2px solid green';
+                addLog(`✅ ${icon.name} loaded successfully (${this.naturalWidth}x${this.naturalHeight})`, 'success');
             };
+            img.onerror = function() {
+                addLog(`❌ ${icon.name} failed to load`, 'error');
+                // Try to fetch with fetch for more info
+                fetch(icon.url)
+                    .then(response => {
+                        if (!response.ok) {
+                            addLog(`❌ ${icon.name} HTTP ${response.status}: ${response.statusText}`, 'error');
+                        } else {
+                            addLog(`❌ ${icon.name} HTTP OK but image failed to render`, 'error');
+                        }
+                    })
+                    .catch(error => {
+                        addLog(`❌ ${icon.name} Network error: ${error.message}`, 'error');
+                    });
+            };
+            img.src = icon.url;
         });
+        
+        // Test manifest loading
+        fetch('/manifest.json')
+            .then(response => response.json())
+            .then(manifest => {
+                addLog(`✅ Manifest loaded: ${manifest.name}`, 'success');
+                if (manifest.icons) {
+                    manifest.icons.forEach(icon => {
+                        addLog(`📱 Manifest icon: ${icon.src} (${icon.sizes})`, 'info');
+                    });
+                }
+            })
+            .catch(error => {
+                addLog(`❌ Manifest failed: ${error.message}`, 'error');
+            });
+        
+        // Test favicon detection
+        setTimeout(() => {
+            const favicon = document.querySelector('link[rel="icon"]') || document.querySelector('link[rel="shortcut icon"]');
+            if (favicon) {
+                addLog(`🔗 Favicon link found: ${favicon.href}`, 'info');
+            } else {
+                addLog(`❌ No favicon link detected`, 'error');
+            }
+        }, 1000);
     </script>
 </body>
 </html>
