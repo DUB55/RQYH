@@ -2,8 +2,8 @@ const CACHE_NAME = 'ruqiyah-v1';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/public/manifest.json',
-  '/Designer (16).png',
+  '/manifest.json',
+  '/logo.png',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
   'https://www.duaandazkar.com/audio_new/CH6DUA1.mp3'
 ];
